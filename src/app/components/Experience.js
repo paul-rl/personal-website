@@ -26,6 +26,7 @@ export default function Experience({ job }) {
             {job.technologies.map((tech, index) => (
               <span
                 key={index}
+                style={{backgroundColor: "#48342c"}}
                 className="bg-gray-800 text-yellow-400 text-sm font-medium py-1 px-3 rounded-full"
               >
                 {tech}
