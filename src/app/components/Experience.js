@@ -1,5 +1,3 @@
-import { STRINGS } from "../constants/strings";
-
 export default function Experience({ job }) {
     return (
       <div className="grid grid-cols-[min-content_auto] gap-x-8 mb-12">
