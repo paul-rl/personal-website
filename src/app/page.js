@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import About from "./components/About";
 import Experience from "./components/Experience";
 import Header from "./components/Header";
@@ -7,8 +7,10 @@ import { STRINGS } from "./constants/strings";
 import Navbar from './components/Navbar';
 import Project from './components/Project'
 
+
 export default function Home() {
   const scrollableContentRef = useRef(null);
+  const [activeSection, setActiveSection] = useState(null);
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -23,6 +25,27 @@ export default function Home() {
     }
   };
 
+  
+  useEffect(() => {
+    const options = { root: scrollableContentRef.current, threshold: 0.9 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      })
+    }, options);
+
+  const sections = document.querySelectorAll("#about, #experience, #projects");
+  sections.forEach(section => observer.observe(section));
+
+  return () => {
+    sections.forEach(section => observer.unobserve(section));
+  }
+
+  });
+  
+
   return (
     <div className="bg-background min-h-screen">
       <div 
@@ -32,7 +55,11 @@ export default function Home() {
         {/* Fixed Column */}
         <div className="sticky mx-auto top-0 h-screen p-8 text-white">
           <Header/>
-          <Navbar sections={STRINGS.navbar.home} scrollToSection={scrollToSection}/>
+          <Navbar 
+            sections={STRINGS.navbar.home} 
+            scrollToSection={scrollToSection}
+            activeSection={activeSection}
+          />
         </div>
 
         {/* Scrollable Column */}
