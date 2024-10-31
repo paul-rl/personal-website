@@ -102,14 +102,15 @@ export const STRINGS = {
                 title: "Personal Website",
                 description: 
                 
-                    "This is it! The website you are on right now, made in a little under a week with barely any experience related to it. I've never been particularly good at front-end work, and this was a perfect opportunity to improve on that. I want to make sure the things I make not only work well but also look well. As of now, the site consists of a homepage containing all my information, but I have future plans to add a blog and a more in-depth projects section!",
+                    "This is it! The website you are on right now, designed in Figma and made in a little under a week with barely any experience related to it. I've never been particularly good at front-end work, and this was a perfect opportunity to improve on that. I want to make sure the things I make not only work well but also look well. As of now, the site consists of a homepage containing all my information, but I have future plans to add a blog and a more in-depth projects section!",
                 link: "https://github.com/paul-rl/personal-website",
                 pic: "images/projects/website.jpg",
                 technologies: [
                     "JavaScript",
                     "React",
                     "Next.js",
-                    "Tailwind CSS"
+                    "Tailwind CSS",
+                    "Figma"
                 ]
             },
             {
