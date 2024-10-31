@@ -16,7 +16,7 @@ export default function Home() {
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section && scrollableContentRef.current) {
-      const offset = 40;
+      const offset = window.innerHeight * 0.1;
       const sectionPosition = section.offsetTop - scrollableContentRef.current.offsetTop - offset;
 
       scrollableContentRef.current.scrollTo({ 
@@ -28,22 +28,28 @@ export default function Home() {
 
   
   useEffect(() => {
-    const options = { root: scrollableContentRef.current, threshold: 0.9 };
-    const observer = new IntersectionObserver((entries) => {
+    const options = { 
+      root: scrollableContentRef.current, 
+      threshold: 0.8
+    };
+
+    const observerCallback = (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          console.log("Intersecting ", entry.target.id);
           setActiveSection(entry.target.id);
         }
       })
-    }, options);
+    };
 
-  const sections = document.querySelectorAll("#about, #experience, #projects");
-  sections.forEach(section => observer.observe(section));
+    const observer = new IntersectionObserver(observerCallback, options);
+  
+    const sections = scrollableContentRef.current.querySelectorAll("#about, #experience, #projects, #resume");
+    sections.forEach(section => observer.observe(section));
 
-  return () => {
-    sections.forEach(section => observer.unobserve(section));
-  }
-
+    return () => {
+      sections.forEach(section => observer.unobserve(section));
+    }
   });
   
 
@@ -68,7 +74,7 @@ export default function Home() {
         <div 
           ref={scrollableContentRef}
           style={{ textAlign: 'justify' }}
-          className="pr-96 overflow-x-hidden overflow-y-scroll h-screen p-8 no-scrollbar">
+          className="pt-12 pr-96 overflow-x-hidden overflow-y-scroll h-screen p-8 no-scrollbar">
           <div>
             <section id="about" className="mb-20">
               <About />
@@ -87,12 +93,30 @@ export default function Home() {
             </section>
 
             <section id="resume" className="mb-12">
-              <h2 className="text-yellow-400 font-bold text-xl mb-4">
-                <a href={STRINGS.resume} target="_blank" rel="noopener noreferrer">
-                  Right here!
+              <h2 className="text-yellow-400 font-bold text-xl mb-24">
+                <a 
+                  href={STRINGS.resume} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-center hover:underline">
+                    You can find my resume right here!
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
+                      stroke="currentColor" className="size-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                    </svg>
                 </a>
               </h2>
             </section>
+            <footer className=" text-gray-300 p-4 text-center mt-8">
+              <p className="text-sm max-w-sm mx-auto">
+                 Greatly inspired by <a href="https://brittanychiang.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Brittany Chiang</a>'s website. I'd also like to give a great thank you to all my more artistic friends who I pestered for feedback on the design constantly. And a great thank you to <strong>YOU</strong> for making it this far!
+              </p>
+              <p className="mt-4 text-xs text-gray-500">
+                Made in {new Date().getFullYear()} 
+              </p>
+            </footer>
+            
           </div>
         </div>
       </div>  
