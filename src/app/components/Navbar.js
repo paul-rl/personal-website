@@ -1,6 +1,6 @@
 export default function Navbar({ sections, scrollToSection, activeSection }) {
     return (
-        <nav className="space-y-2 text-gray-300 text-xl mt-8">
+        <nav className="space-y-2 text-gray-300 text-xl mt-8 pl-6">
             {sections.map((section) => (
                 <button
                     key={section.id}
