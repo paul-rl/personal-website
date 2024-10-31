@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import { STRINGS } from "./constants/strings";
 import Navbar from './components/Navbar';
 import Project from './components/Project'
+import { ST } from 'next/dist/shared/lib/utils';
 
 
 export default function Home() {
@@ -60,6 +61,7 @@ export default function Home() {
             scrollToSection={scrollToSection}
             activeSection={activeSection}
           />
+
         </div>
 
         {/* Scrollable Column */}
@@ -78,10 +80,18 @@ export default function Home() {
               ))}
             </section>
 
-            <section id="projects" className="mb-12">
+            <section id="projects" className="mb-24">
               {STRINGS.experience.projects.map((project, index) => (
                 <Project key={index} project={project} />
               ))}
+            </section>
+
+            <section id="resume" className="mb-12">
+              <h2 className="text-yellow-400 font-bold text-xl mb-4">
+                <a href={STRINGS.resume} target="_blank" rel="noopener noreferrer">
+                  Right here!
+                </a>
+              </h2>
             </section>
           </div>
         </div>

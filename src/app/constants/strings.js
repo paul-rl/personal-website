@@ -8,7 +8,8 @@ export const STRINGS = {
         home: [
             {id: "about", label: "Who am I?"},
             {id: "experience", label: "Where have I worked?"},
-            {id: "projects", label: "What have I made?"}
+            {id: "projects", label: "What have I made?"},
+            {id: "resume", label: "Where is my resume?"}
         ],
     },
 
@@ -164,5 +165,7 @@ export const STRINGS = {
                 ]
             },
         ]
-    }
+    },
+
+    resume: "files/resume.pdf"
 }
