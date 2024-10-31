@@ -10,13 +10,6 @@ export const STRINGS = {
             {id: "experience", label: "Where have I worked?"},
             {id: "projects", label: "What have I made?"}
         ],
-
-        projects: [
-            "A",
-            "B",
-            "C",
-            "D"
-        ]
     },
 
     about: {
@@ -109,7 +102,7 @@ export const STRINGS = {
                 description: 
                 
                     "This is it! The website you are on right now, made in a little under a week with barely any experience related to it. I've never been particularly good at front-end work, and this was a perfect opportunity to improve on that. I want to make sure the things I make not only work well but also look well. As of now, the site consists of a homepage containing all my information, but I have future plans to add a blog and a more in-depth projects section!",
-                repo: "https://github.com/paul-rl/personal-website",
+                link: "https://github.com/paul-rl/personal-website",
                 pic: "images/projects/website.jpg",
                 technologies: [
                     "JavaScript",
@@ -122,7 +115,7 @@ export const STRINGS = {
                 title: "Groundbreak",
                 description: 
                     "The first full-fledged game I made, a mixture between two of my favorite genres: rouge-likes and tactical RPGs. In it, you're trying to fight your way out of a procedurally-generated dungeon, with the only way to fight back being by throwing elementally-infused tiles to make a variety of effects. I mainly focused on the combat design for the game, and had to deal first-hand with the beauty of balancing games based on player feedback (RIP Sandstorm).",
-                repo: "https://github.com/COP-4053-Groundbreak/Groundbreak",
+                link: "https://github.com/COP-4053-Groundbreak/Groundbreak",
                 pic: "images/projects/groundbreak.gif",
                 technologies: [
                     "C#",
@@ -135,7 +128,6 @@ export const STRINGS = {
                 title: "RE-RASSOR Multi-Robot System",
                 description: 
                     "As a kid, I was always fascinated with space. This project was an awesome opportunity to work with the Florida Space Institute to help advance space research. In this project, we worked together to make a Multi-autonomous Robot System (MaRS for short hehe) that was able to pick up and drop payloads in lunar environments. I mainly focused on creating the simulated environment, assembling models, and coordinating some of the rover arm movements. An extremely fun yet difficult project that taught me a lot about how picky robotics can truly be.",
-                repo: "https://github.com/FlaSpaceInst/MARS---Multi-Autonomous-Robotic-System/tree/development",
                 pic: "images/projects/rerassor.png",
                 technologies: [
                     "Python",
@@ -152,6 +144,7 @@ export const STRINGS = {
                 description: 
                     "For my video game design class we were tasked with creating a Game Design Document for a game of our own creation. We made Keystone, an open-world exploration game where rich ecosystems lead to complex puzzles based on NPC behaviors. This was the first time I worked on a creative project with people outside of my discipline, and it was fun learning to put to life the spirit of designs created by our artist and writer through gameplay. I mainly focused my work on designing the dungeons and creating the playtest for the game, in the form of a Choose-Your-Own-Adventure game.",
                 pic: "images/projects/keystone.jpg",
+                link: "files/gdd.pdf",
                 technologies: [
                     "Twine",
                     "Interdisciplinary Collaboration",
@@ -162,7 +155,6 @@ export const STRINGS = {
                 title: "FakeFlix Additions",
                 description: 
                     "For my Software Engineering class, we were tasked with adding features to a pre-existing codebase. Whenever I touched the front-end of applications beofre, I always ensured they were functional, but didn't spend the most time beautifying it. Here, I really wanted to make an effort to grow in this area. I focused on creating recommendations for the user based off their most recently watched content and making new UI components. It was fun learning how React and Redux work together to create complex, stateful applications.",
-                repo: "https://github.com/UCF-CEN-5016/sde-project-works-on-my-machine",
                 pic: "images/projects/fakeflix.png",
                 technologies: [
                     "JavaScript",
