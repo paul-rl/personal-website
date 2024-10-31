@@ -1,9 +1,28 @@
+"use client";
+import React, { useRef } from 'react';
 import About from "./components/About";
 import Experience from "./components/Experience";
 import Header from "./components/Header";
 import { STRINGS } from "./constants/strings";
+import Navbar from './components/Navbar';
+import Project from './components/Project'
 
 export default function Home() {
+  const scrollableContentRef = useRef(null);
+
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section && scrollableContentRef.current) {
+      const offset = 40;
+      const sectionPosition = section.offsetTop - scrollableContentRef.current.offsetTop - offset;
+
+      scrollableContentRef.current.scrollTo({ 
+        top: sectionPosition,
+        behavior: 'smooth' 
+      });
+    }
+  };
+
   return (
     <div className="bg-background min-h-screen">
       <div 
@@ -12,30 +31,31 @@ export default function Home() {
       >
         {/* Fixed Column */}
         <div className="sticky mx-auto top-0 h-screen p-8 text-white">
-          {/* Header*/}
           <Header/>
-          
-          {/* Navbar Section (Bottom Links) */}
-          <nav className="space-y-2 text-gray-300 text-xl mt-8">
-            <a href="#who-am-i" className="block hover:text-yellow-400">Who am I?</a>
-            <a href="#where-have-i-worked" className="block hover:text-yellow-400">Where have I worked?</a>
-            <a href="#what-have-i-made" className="block hover:text-yellow-400">What have I made?</a>
-          </nav>
+          <Navbar sections={STRINGS.navbar.home} scrollToSection={scrollToSection}/>
         </div>
 
         {/* Scrollable Column */}
         <div 
+          ref={scrollableContentRef}
           style={{ textAlign: 'justify' }}
-          className="max-w-4xl overflow-y-scroll h-screen p-8">
+          className="pr-96 overflow-x-hidden overflow-y-scroll h-screen p-8 no-scrollbar">
           <div>
-            <div className="mb-12">
+            <section id="about" className="mb-20">
               <About />
-            </div>
+            </section>
             
-            
-            {STRINGS.experience.jobs.map((job, index) => (
-              <Experience key={index} job={job} />
-            ))}
+            <section id="experience" className="mb-20">
+              {STRINGS.experience.jobs.map((job, index) => (
+                <Experience key={index} job={job} />
+              ))}
+            </section>
+
+            <section id="projects" className="mb-12">
+              {STRINGS.experience.projects.map((project, index) => (
+                <Project key={index} project={project} />
+              ))}
+            </section>
           </div>
         </div>
       </div>  
