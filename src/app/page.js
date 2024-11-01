@@ -6,7 +6,6 @@ import Header from "./components/Header";
 import { STRINGS } from "./constants/strings";
 import Navbar from './components/Navbar';
 import Project from './components/Project'
-import { ST } from 'next/dist/shared/lib/utils';
 
 
 export default function Home() {
