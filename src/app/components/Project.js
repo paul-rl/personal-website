@@ -1,4 +1,3 @@
-import { HomeIcon } from '@heroicons/react/outline';
 
 export default function Project({ project }) {
     return (

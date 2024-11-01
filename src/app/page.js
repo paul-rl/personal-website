@@ -110,7 +110,7 @@ export default function Home() {
             </section>
             <footer className=" text-gray-300 p-4 text-center mt-8">
               <p className="text-sm max-w-sm mx-auto">
-                 Greatly inspired by <a href="https://brittanychiang.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Brittany Chiang</a>'s website. I'd also like to give a great thank you to all my more artistic friends who I pestered for feedback on the design constantly. And a great thank you to <strong>YOU</strong> for making it this far!
+                 Greatly inspired by <a href="https://brittanychiang.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Brittany Chiang</a>&apos;s website. I&apos;d also like to give a great thank you to all my more artistic friends who I pestered for feedback on the design constantly. And a great thank you to <strong>YOU</strong> for making it this far!
               </p>
               <p className="mt-4 text-xs text-gray-500">
                 Made in {new Date().getFullYear()} 

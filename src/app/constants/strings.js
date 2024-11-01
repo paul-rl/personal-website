@@ -36,7 +36,7 @@ export const STRINGS = {
         internship: (
             <>
                 Focusing on my fundamentals during school paid off as I was able to land a set of internships at 
-                <span className="text-yellow-400 font-semibold"> Amazon</span>, where I worked on bringing Alexa to wearable devices. It was during my first internship that I got a peek at just how wide the world of Software Engineering is, which inspired me to pursue my <span className="text-yellow-400 font-semibold"> Master's of Computer Science</span>. Now, I channel this curiosity for the systems behind these interactive experiences to create clean and user-friendly experiences, just like this one!
+                <span className="text-yellow-400 font-semibold"> Amazon</span>, where I worked on bringing Alexa to wearable devices. It was during my first internship that I got a peek at just how wide the world of Software Engineering is, which inspired me to pursue my <span className="text-yellow-400 font-semibold"> Master&apos;s of Computer Science</span>. Now, I channel this curiosity for the systems behind these interactive experiences to create clean and user-friendly experiences, just like this one!
             </>
         ),
 
@@ -116,7 +116,7 @@ export const STRINGS = {
             {
                 title: "Groundbreak",
                 description: 
-                    "The first full-fledged game I made, a mixture between two of my favorite genres: rouge-likes and tactical RPGs. In it, you're trying to fight your way out of a procedurally-generated dungeon, with the only way to fight back being by throwing elementally-infused tiles to make a variety of effects. I mainly focused on the combat design for the game, and had to deal first-hand with the beauty of balancing games based on player feedback (RIP Sandstorm).",
+                    "The first full-fledged game I made, a mixture between two of my favorite genres: rouge-likes and tactical RPGs. In it, you\'re trying to fight your way out of a procedurally-generated dungeon, with the only way to fight back being by throwing elementally-infused tiles to make a variety of effects. I mainly focused on the combat design for the game, and had to deal first-hand with the beauty of balancing games based on player feedback (RIP Sandstorm).",
                 link: "https://github.com/COP-4053-Groundbreak/Groundbreak",
                 pic: "images/projects/groundbreak.gif",
                 technologies: [
