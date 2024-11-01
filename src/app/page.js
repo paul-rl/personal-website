@@ -1,101 +1,125 @@
-import Image from "next/image";
+"use client";
+import React, { useRef, useState, useEffect } from 'react';
+import About from "./components/About";
+import Experience from "./components/Experience";
+import Header from "./components/Header";
+import { STRINGS } from "./constants/strings";
+import Navbar from './components/Navbar';
+import Project from './components/Project'
+import { ST } from 'next/dist/shared/lib/utils';
+
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const scrollableContentRef = useRef(null);
+  const [activeSection, setActiveSection] = useState(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section && scrollableContentRef.current) {
+      const offset = window.innerHeight * 0.1;
+      const sectionPosition = section.offsetTop - scrollableContentRef.current.offsetTop - offset;
+
+      scrollableContentRef.current.scrollTo({ 
+        top: sectionPosition,
+        behavior: 'smooth' 
+      });
+    }
+  };
+
+  
+  useEffect(() => {
+    const options = { 
+      root: scrollableContentRef.current, 
+      threshold: 0.8
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          console.log("Intersecting ", entry.target.id);
+          setActiveSection(entry.target.id);
+        }
+      })
+    };
+
+    const observer = new IntersectionObserver(observerCallback, options);
+  
+    const sections = scrollableContentRef.current.querySelectorAll("#about, #experience, #projects, #resume");
+    sections.forEach(section => observer.observe(section));
+
+    return () => {
+      sections.forEach(section => observer.unobserve(section));
+    }
+  });
+  
+
+  return (
+    <div className="bg-background min-h-screen">
+      <div 
+        style={{paddingLeft:"5%", paddingRight: "5%"}}
+        className="max-w-8xl mx-auto min-h-screen grid grid-cols-[30%_70%] gap-8"
+      >
+        {/* Fixed Column */}
+        <div className="sticky mx-auto top-0 h-screen p-8 text-white">
+          <Header/>
+          <Navbar 
+            sections={STRINGS.navbar.home} 
+            scrollToSection={scrollToSection}
+            activeSection={activeSection}
+          />
+
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Scrollable Column */}
+        <div 
+          ref={scrollableContentRef}
+          style={{ textAlign: 'justify' }}
+          className="pt-12 pr-96 overflow-x-hidden overflow-y-scroll h-screen p-8 no-scrollbar">
+          <div>
+            <section id="about" className="mb-20">
+              <About />
+            </section>
+            
+            <section id="experience" className="mb-20">
+              {STRINGS.experience.jobs.map((job, index) => (
+                <Experience key={index} job={job} />
+              ))}
+            </section>
+
+            <section id="projects" className="mb-24">
+              {STRINGS.experience.projects.map((project, index) => (
+                <Project key={index} project={project} />
+              ))}
+            </section>
+
+            <section id="resume" className="mb-12">
+              <h2 className="text-yellow-400 font-bold text-xl mb-24">
+                <a 
+                  href={STRINGS.resume} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-center hover:underline">
+                    You can find my resume right here!
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
+                      stroke="currentColor" className="size-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                    </svg>
+                </a>
+              </h2>
+            </section>
+            <footer className=" text-gray-300 p-4 text-center mt-8">
+              <p className="text-sm max-w-sm mx-auto">
+                 Greatly inspired by <a href="https://brittanychiang.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Brittany Chiang</a>'s website. I'd also like to give a great thank you to all my more artistic friends who I pestered for feedback on the design constantly. And a great thank you to <strong>YOU</strong> for making it this far!
+              </p>
+              <p className="mt-4 text-xs text-gray-500">
+                Made in {new Date().getFullYear()} 
+              </p>
+            </footer>
+            
+          </div>
+        </div>
+      </div>  
     </div>
   );
 }
